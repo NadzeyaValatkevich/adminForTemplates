@@ -1,21 +1,30 @@
-import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import { Paper } from '@mui/material'
-import { StylesProvider } from '@material-ui/core';
 import { Typography } from '@mui/material'
 import styles from "./Login.module.css"
-import Box from '@mui/material/Box'
+import Box from '@mui/material/Box';
+import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement } from 'react-hook-form-mui';
+
+type FormValuesType = {
+    login: string
+    password: string
+};
 
 export const Login = () => {
+
+    // const onSuccessHandler: SubmitHandler<FormValuesType> = data => {
+    //     dispatch(loginTC(data))
+    // }
+
+    const onSuccessHandler: SubmitHandler<FormValuesType> = data => {
+        alert(data)
+    }
+
+
     return (
-        // <Grid container justifyContent={'center'}>
-        //    <Grid item justifyContent={'center'}>
         <div className={styles.loginBlock}>
             <Paper
                 elevation={2}
@@ -51,21 +60,40 @@ export const Login = () => {
                         Добро пожаловать в систему администрирования сайта
                     </Typography>
                 </Box>
-                <FormControl sx={{ width: "100%" }} >
-                    <FormGroup sx={{ padding: '0 1rem 0 1rem' }}>
-                        <TextField fullWidth label="Имя пользователя" margin="normal" variant="standard" />
-                        <TextField fullWidth type="password" label="Пароль" variant="standard"
-                            margin="normal"
-                        />
-                        {/* <FormControlLabel label={'Remember me'} control={<Checkbox />} /> */}
-                        <Button type={'submit'}
-                            variant={'contained'}
-                            color={'primary'}
-                            sx={{ width: "100px", alignSelf: "center", marginTop: "20px" }}>
-                            ВОЙТИ
-                        </Button>
-                    </FormGroup>
-                </FormControl>
+                <Box sx={{ width: "100%" }}>
+                    <FormContainer<FormValuesType> onSuccess={onSuccessHandler}>
+                        <FormGroup sx={{ padding: '0 1rem 0 1rem', width: "100%", boxSizing: "border-box" }}>
+
+                            <TextFieldElement
+                                type={'login'}
+                                margin={'dense'}
+                                label={'Login'}
+                                name={'login'}
+                                variant={'standard'}
+                                // autoComplete={'username'}
+                                fullWidth
+                            />
+                            <PasswordElement
+                                type={'password'}
+                                margin={'dense'}
+                                label={'Password'}
+                                name={'password'}
+                                variant={'standard'}
+                                // autoComplete={'current-password'}
+                                fullWidth
+                            />
+
+                            <Button type={'submit'}
+                                variant={'contained'}
+                                color={'primary'}
+                                sx={{ width: "100px", alignSelf: "center", marginTop: "20px" }}>
+                                ВОЙТИ
+                            </Button>
+                        </FormGroup>
+
+                    </FormContainer>
+                </Box>
+                {/* </form> */}
             </Paper>
         </div >
 
