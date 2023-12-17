@@ -5,17 +5,25 @@ import styles from "./App.module.css";
 import { Container } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { Login } from "../pages/Login/Login";
+import { Home } from "../pages/Home/Home";
+import { Loader } from '../components/Loader/Loader';
+
+const isInitialized = false
+
+if (!isInitialized) {
+  <Loader />
+}
 
 function App() {
 
   return (
     // <div className={styles.appBlock}>
 
-
     <Container>
       <Routes>
-        {/* <Route path={'/'} element={ } /> */}
+        <Route path={'/'} element={<Home />} />
         <Route path={'/login'} element={<Login />} />
+        <Route path={'*'} element={<h1>404: Page not found</h1>} />
       </Routes>
     </Container>
     // </div>

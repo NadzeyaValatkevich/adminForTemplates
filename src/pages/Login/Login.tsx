@@ -74,7 +74,7 @@ export const Login = () => {
                                 fullWidth
                             />
                             <PasswordElement
-                                type={'password'}
+                                type={'text'}
                                 margin={'dense'}
                                 label={'Password'}
                                 name={'password'}
@@ -82,7 +82,6 @@ export const Login = () => {
                                 // autoComplete={'current-password'}
                                 fullWidth
                             />
-
                             <Button type={'submit'}
                                 variant={'contained'}
                                 color={'primary'}
