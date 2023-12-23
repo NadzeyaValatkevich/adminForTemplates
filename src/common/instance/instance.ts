@@ -8,6 +8,6 @@ const settings = {
 }
 
 export const instance = axios.create ({
-    baseURL: '',
+    baseURL: 'http://localhost:8000',
     ...settings
 })

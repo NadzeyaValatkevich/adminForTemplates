@@ -3,7 +3,7 @@ import { Header } from "../../components/Header/Header"
 import { Loader } from "../../components/Loader/Loader"
 import { Sidebar } from "../../components/Sidebar/Sidebar"
 
-const isLoggedIn = false
+const isLoggedIn = true
 
 if (!isLoggedIn) {
     <Navigate to={'/login'} />

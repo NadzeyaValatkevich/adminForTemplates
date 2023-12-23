@@ -1,12 +1,12 @@
-import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Paper } from '@mui/material'
 import { Typography } from '@mui/material'
 import styles from "./Login.module.css"
 import Box from '@mui/material/Box';
 import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement } from 'react-hook-form-mui';
+import { useActions } from '../../common/hooks/useActions';
+import { authThunks } from '.';
 
 type FormValuesType = {
     login: string
@@ -14,14 +14,15 @@ type FormValuesType = {
 };
 
 export const Login = () => {
+    const { login, logout } = useActions(authThunks)
+
+    const onSuccessHandler: SubmitHandler<FormValuesType> = async (data: FormValuesType) => {
+        await login(data)
+    }
 
     // const onSuccessHandler: SubmitHandler<FormValuesType> = data => {
-    //     dispatch(loginTC(data))
+    //     alert(data)
     // }
-
-    const onSuccessHandler: SubmitHandler<FormValuesType> = data => {
-        alert(data)
-    }
 
 
     return (
@@ -97,4 +98,8 @@ export const Login = () => {
         </div >
 
     )
+}
+
+function dispatch(arg0: any) {
+    throw new Error('Function not implemented.');
 }

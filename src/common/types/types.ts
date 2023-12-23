@@ -6,4 +6,5 @@ export type LoginParamsType = {
 export type ResponseType = {
     resultCode: number,
     messages: string[],
-}
+};
+
