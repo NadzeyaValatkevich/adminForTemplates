@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { login, logout } from "./authThunks"
 
-const slice = createSlice({
+export const slice = createSlice({
     name: 'auth',
     initialState: {
     isLoggedIn: false

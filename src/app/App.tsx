@@ -1,20 +1,26 @@
-import { Header } from '../components/Header/Header';
-import { Sidebar } from '../components/Sidebar/Sidebar';
 import './App.css';
-import styles from "./App.module.css";
 import { Container } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
-import { Login } from "../pages/Login/Login";
+import { Login } from "../pages/Login";
 import { Home } from "../pages/Home/Home";
 import { Loader } from '../components/Loader/Loader';
-
-const isInitialized = false
-
-if (!isInitialized) {
-  <Loader />
-}
+import { appThunks } from "./index";
+import { useAppSelector } from '../common/hooks/useAppSelector';
+import { AppRootStateType } from './store';
+import { useEffect } from 'react';
+import { useActions } from '../common/hooks/useActions';
 
 function App() {
+
+  const isInitialized = useAppSelector((state: AppRootStateType): boolean => state.app.isInitialized);
+
+  const { initializeApp } = useActions(appThunks);
+
+  if (!isInitialized) {
+    <Loader />
+  }
+
+  useEffect(() => { initializeApp() }, []);
 
   return (
     // <div className={styles.appBlock}>

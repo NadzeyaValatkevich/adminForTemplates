@@ -6,7 +6,7 @@ import styles from "./Login.module.css"
 import Box from '@mui/material/Box';
 import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement } from 'react-hook-form-mui';
 import { useActions } from '../../common/hooks/useActions';
-import { authThunks } from '.';
+import { authActions, authThunks } from '.';
 
 type FormValuesType = {
     login: string
@@ -14,10 +14,11 @@ type FormValuesType = {
 };
 
 export const Login = () => {
-    const { login, logout } = useActions(authThunks)
+    const { login, logout } = useActions(authThunks);
 
     const onSuccessHandler: SubmitHandler<FormValuesType> = async (data: FormValuesType) => {
         await login(data)
+        // await dispatch<any>(authThunks.login(data))
     }
 
     // const onSuccessHandler: SubmitHandler<FormValuesType> = data => {
