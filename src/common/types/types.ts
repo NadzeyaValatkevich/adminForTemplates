@@ -1,10 +1,9 @@
 export type LoginParamsType = {
-    login: string,
+    username: string,
     password: string
 };
 
 export type ResponseType = {
-    resultCode: number,
-    messages: string[],
+    // messages: string[],
 };
 

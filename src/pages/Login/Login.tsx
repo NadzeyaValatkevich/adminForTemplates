@@ -5,18 +5,20 @@ import { Typography } from '@mui/material'
 import styles from "./Login.module.css"
 import Box from '@mui/material/Box';
 import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement } from 'react-hook-form-mui';
-import { useActions } from '../../common/hooks/useActions';
+import { useActions } from '@/common/hooks/useActions';
 import { authActions, authThunks } from '.';
 
 type FormValuesType = {
-    login: string
+    username: string
     password: string
 };
 
 export const Login = () => {
     const { login, logout } = useActions(authThunks);
 
+
     const onSuccessHandler: SubmitHandler<FormValuesType> = async (data: FormValuesType) => {
+
         await login(data)
         // await dispatch<any>(authThunks.login(data))
     }
@@ -67,10 +69,10 @@ export const Login = () => {
                         <FormGroup sx={{ padding: '0 1rem 0 1rem', width: "100%", boxSizing: "border-box" }}>
 
                             <TextFieldElement
-                                type={'login'}
+                                type={'username'}
                                 margin={'dense'}
                                 label={'Login'}
-                                name={'login'}
+                                name={'username'}
                                 variant={'standard'}
                                 // autoComplete={'username'}
                                 fullWidth
@@ -99,8 +101,4 @@ export const Login = () => {
         </div >
 
     )
-}
-
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
 }

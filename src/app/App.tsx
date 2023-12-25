@@ -16,19 +16,19 @@ function App() {
 
   const { initializeApp } = useActions(appThunks);
 
-  if (!isInitialized) {
-    <Loader />
-  }
+  // if (!isInitialized) {
+  //   <Loader />
+  // }
 
-  useEffect(() => { initializeApp() }, []);
+  // useEffect(() => { initializeApp() }, []);
 
   return (
     // <div className={styles.appBlock}>
 
     <Container>
       <Routes>
-        <Route path={'/'} element={<Home />} />
-        <Route path={'/login'} element={<Login />} />
+        <Route path={'/Home'} element={<Home />} />
+        <Route path={'/'} element={<Login />} />
         <Route path={'*'} element={<h1>404: Page not found</h1>} />
       </Routes>
     </Container>
