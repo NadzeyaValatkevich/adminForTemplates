@@ -12,12 +12,12 @@ export const login = createAsyncThunk("auth/login", async (param: LoginParamsTyp
     try {
         const res = await authAPI.login(param)
 
-        console.log(res);
+        // console.log(res);
         
         // if(res.data.resultCode === 0) {
-            // thunkAPI.dispatch(setIsLoggedIn({value: true}))
+            thunkAPI.dispatch(setIsLoggedIn({value: true}))
             thunkAPI.dispatch(setAppStatus({status:RequestStatusType.succeeded}))
-            return {isLoggedIn: true};
+            return 
         // } else {
             // handleServerAppError(res.data, thunkAPI.dispatch)
             // return {isLoggedIn: false}
@@ -33,14 +33,14 @@ export const logout = createAsyncThunk("auth/logout", async (param, thunkAPI) =>
     thunkAPI.dispatch(setAppStatus({status:RequestStatusType.loading}))
     try {
         const res = await authAPI.logout()
-        if(res.data.resultCode === 0) {
+        // if(res.data.resultCode === 0) {
             thunkAPI.dispatch(setIsLoggedIn({value: true}))
             thunkAPI.dispatch(setAppStatus({status:RequestStatusType.succeeded}))
             return
-        } else {
+        // } else {
             // handleServerAppError(res.data, thunkAPI.dispatch)
             // return {isLoggedIn: false}
-        }     
+        // }     
     } catch (error) {
         // handleServerNetworkError(error, dispatch)
         // return {isLoggedIn: false}

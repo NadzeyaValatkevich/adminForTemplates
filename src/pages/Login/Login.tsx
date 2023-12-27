@@ -6,7 +6,11 @@ import styles from "./Login.module.css"
 import Box from '@mui/material/Box';
 import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement } from 'react-hook-form-mui';
 import { useActions } from '@/common/hooks/useActions';
-import { authActions, authThunks } from '.';
+import { authThunks } from '.';
+import { useAppSelector } from '@/common/hooks/useAppSelector';
+import { AppRootStateType } from '@/app/store';
+import { Navigate } from 'react-router-dom';
+import { useAppDispatch } from '@/common/hooks/useAppDispatch';
 
 type FormValuesType = {
     username: string
@@ -14,20 +18,26 @@ type FormValuesType = {
 };
 
 export const Login = () => {
-    const { login, logout } = useActions(authThunks);
+    const dispatch = useAppDispatch();
+    const isLoggedIn = useAppSelector((state: AppRootStateType): boolean => state.auth.isLoggedIn)
+
+    if (isLoggedIn) {
+        return <Navigate to={'/home'} />
+    }
+
 
 
     const onSuccessHandler: SubmitHandler<FormValuesType> = async (data: FormValuesType) => {
 
-        await login(data)
-        // await dispatch<any>(authThunks.login(data))
+        // await login(data)
+        await dispatch(authThunks.login(data))
     }
 
     // const onSuccessHandler: SubmitHandler<FormValuesType> = data => {
     //     alert(data)
     // }
 
-
+    // const { login } = useActions(authThunks);
     return (
         <div className={styles.loginBlock}>
             <Paper

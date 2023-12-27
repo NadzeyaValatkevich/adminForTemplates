@@ -27,8 +27,8 @@ function App() {
 
     <Container>
       <Routes>
-        <Route path={'/Home'} element={<Home />} />
         <Route path={'/'} element={<Login />} />
+        <Route path={'/home'} element={<Home />} />
         <Route path={'*'} element={<h1>404: Page not found</h1>} />
       </Routes>
     </Container>
