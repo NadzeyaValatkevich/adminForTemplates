@@ -3,7 +3,11 @@ export type LoginParamsType = {
     password: string
 };
 
-export type ResponseType = {
-    // messages: string[],
+export type HomeResponseType = {
+    id: number,
+  email: string,
+  is_active: boolean,
+  is_superuser: boolean,
+  is_verified: boolean
 };
 

@@ -9,8 +9,9 @@ import { useActions } from '@/common/hooks/useActions';
 import { authThunks } from '.';
 import { useAppSelector } from '@/common/hooks/useAppSelector';
 import { AppRootStateType } from '@/app/store';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/common/hooks/useAppDispatch';
+import { useEffect } from 'react';
 
 type FormValuesType = {
     username: string
@@ -19,11 +20,12 @@ type FormValuesType = {
 
 export const Login = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const isLoggedIn = useAppSelector((state: AppRootStateType): boolean => state.auth.isLoggedIn)
 
-    if (isLoggedIn) {
-        return <Navigate to={'/home'} />
-    }
+    useEffect(() => {
+        isLoggedIn && navigate('/ ')
+    }, [isLoggedIn])
 
 
 

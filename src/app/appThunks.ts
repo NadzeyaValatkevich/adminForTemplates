@@ -6,15 +6,12 @@ import { setAppInitialized, setAppStatus } from "./appReducer"
 import { AppThunk } from "./store"
 
 export const initializeApp = createAsyncThunk("app/initializeApp", async (param, {dispatch}) => {
-    // const token = getState().token
-    
-    // dispatch(setAppStatus({status: RequestStatusType.loading}))
     
         const res = await authAPI.me()
 
-        if(res.data.resultCode === 0) {
+        // if(res.data.resultCode === 0) {
            
              dispatch(setIsLoggedIn({value: true}))    
-        }   
+        // }   
 })
 
