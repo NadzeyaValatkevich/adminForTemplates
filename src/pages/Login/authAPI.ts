@@ -6,7 +6,7 @@ export const authAPI = {
         return (instance.post('auth/login', data))
     },
     logout() {
-        return(instance.delete(`auth/login`))
+        return(instance.post(`auth/logout`))
     },
     me() {
         return (instance.get<HomeResponseType>('auth/me'))
