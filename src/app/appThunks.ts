@@ -1,17 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { RequestStatusType } from "../common/enums/enums"
 import { authAPI } from "../pages/Login/authAPI"
 import { setIsLoggedIn } from "../pages/Login/authReducer"
-import { setAppInitialized, setAppStatus } from "./appReducer"
-import { AppThunk } from "./store"
+import { appActions } from "."
 
 export const initializeApp = createAsyncThunk("app/initializeApp", async (param, {dispatch}) => {
     
-        const res = await authAPI.me()
+         try{
+                const res = await authAPI.me()
+                console.log('try')
+                if (res.data.is_active) {
+        dispatch(setIsLoggedIn({value: true}))
+}
+                // dispatch(setIsLoggedIn({value: true}))
 
-        // if(res.data.resultCode === 0) {
-           
-             dispatch(setIsLoggedIn({value: true}))    
-        // }   
+        } catch(error: any) {
+                console.log('catch')
+                // console.log(error)
+
+        } 
+        finally {
+                dispatch(appActions.setAppInitialized({isInitialized: true}))
+        }
+         
 })
 

@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunkMiddleware, { ThunkAction} from "redux-thunk";
 import { combineReducers } from "redux";
-import { authReducer } from "../pages/Login/authReducer";
-import { appReducer } from "./appReducer";
+import { appReducer } from ".";
+import { authReducer } from "@/pages/Login";
+
 
 export const rootReducer = combineReducers({
     app: appReducer,

@@ -1,8 +1,8 @@
-import { useAppSelector } from '@/common/hooks/useAppSelector';
-import { createBrowserRouter, RouterProvider, RouteObject, Navigate, Outlet } from 'react-router-dom';
-import { AppRootStateType } from './store';
-import { Home } from '@/pages/Home/Home';
+import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 import { Login } from '@/pages/Login';
+import { HomePage } from '@/pages/Home';
+import { PrivateRoutes } from '@/utils/PrivateRoutes';
+
 
 const publicRoutes: RouteObject[] = [
     {
@@ -14,17 +14,10 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
     {
         path: '/',
-        element: <Home />,
+        element: <HomePage />,
     },
 ]
 
-const PrivateRoutes = () => {
-
-    const isLoggedIn = useAppSelector((state: AppRootStateType): boolean => state.auth.isLoggedIn)
-
-
-    return isLoggedIn ? <Navigate to="/" /> : <Navigate to="/login" />
-}
 
 const router = createBrowserRouter([
     {

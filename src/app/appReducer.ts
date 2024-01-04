@@ -1,30 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { PayloadAction } from '@reduxjs/toolkit';
-import { RequestStatusType } from "../common/enums/enums";
 import { initializeApp } from "./appThunks";
+import { appCommonActions } from "@/common/commonActions/AppCommonActions";
 
-const slice = createSlice({
+ export const slice = createSlice({
     name: 'app',
     initialState: {
     error: null as string | null,
-    status: RequestStatusType.idle as RequestStatusType,
+    status: 'idle',
     isInitialized: false
 },
     reducers: {
-        setAppError(state, action: PayloadAction<{error: string | null}>) {
-            state.error = action.payload.error
-        },
-        setAppStatus(state, action: PayloadAction<{status: RequestStatusType}>) {
-            state.status = action.payload.status
-        } 
+        setAppInitialized(state, action: PayloadAction<{ isInitialized: boolean }>) {
+            state.isInitialized = action.payload.isInitialized
+        }
     },
 
     extraReducers: builder => {
         builder.addCase(initializeApp.fulfilled, (state) => {
             state.isInitialized = true
+        }),
+        builder.addCase(appCommonActions.setStatus, (state, action) => {
+            state.status = action.payload.status
+        }),
+        builder.addCase(appCommonActions.setError, (state, action) => {
+            state.error = action.payload.error
         })
     }
 })
-
-export const appReducer = slice.reducer
-export const {setAppError, setAppStatus} = slice.actions

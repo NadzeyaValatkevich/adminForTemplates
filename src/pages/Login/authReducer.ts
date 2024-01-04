@@ -22,5 +22,5 @@ setIsLoggedIn(state, action: PayloadAction<{value: boolean}>) {
     
 })
 
-export const authReducer = slice.reducer
+// export const authReducer = slice.reducer
 export const {setIsLoggedIn} = slice.actions
