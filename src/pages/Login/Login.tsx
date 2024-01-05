@@ -4,13 +4,13 @@ import { Paper } from '@mui/material'
 import { Typography } from '@mui/material'
 import styles from "./Login.module.css"
 import Box from '@mui/material/Box';
-import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement } from 'react-hook-form-mui';
+import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement, useForm } from 'react-hook-form-mui';
 import { authThunks } from '.';
 import { useAppSelector } from '@/common/hooks/useAppSelector';
 import { AppRootStateType } from '@/app/store';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/common/hooks/useAppDispatch';
-import { useEffect } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 
 type FormValuesType = {
     username: string
@@ -21,7 +21,7 @@ export const Login = () => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const isLoggedIn = useAppSelector((state: AppRootStateType): boolean => state.auth.isLoggedIn)
+    const isLoggedIn = useAppSelector((state: AppRootStateType): boolean => state.auth.isLoggedIn);
 
     useEffect(() => {
         isLoggedIn && navigate('/ ')
@@ -31,6 +31,13 @@ export const Login = () => {
     const onSuccessHandler: SubmitHandler<FormValuesType> = async (data: FormValuesType) => {
         await dispatch(authThunks.login(data))
     }
+
+    // const { watch } = useForm<FormValuesType>()
+    // const formValues = watch();
+
+    // const [valueUserName, setValueUserName] = useState("")
+    // console.log(valueUserName)
+
 
     return (
         <div className={styles.loginBlock}>
@@ -78,6 +85,7 @@ export const Login = () => {
                                 label={'Login'}
                                 name={'username'}
                                 variant={'standard'}
+                                // onChange={(e: ChangeHandler<HTMLInputElement | HTMLTextAreaElement>) => setValueUserName(e)}
                                 // autoComplete={'username'}
                                 fullWidth
                             />

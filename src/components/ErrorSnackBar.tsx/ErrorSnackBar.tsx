@@ -1,9 +1,11 @@
 import * as React from 'react';
-import Snackbar from '@mui/material/Snackbar';
+import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import { useSelector } from "react-redux";
 import { useAppSelector } from '@/common/hooks/useAppSelector';
 import { AppRootStateType } from '@/app/store';
+import { appCommonActions } from '@/common/commonActions/AppCommonActions';
+import { SyntheticEvent } from 'react';
+import { useAppDispatch } from '@/common/hooks/useAppDispatch';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -13,16 +15,16 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 export const ErrorSnackBar = () => {
-    // const error = useSelector<AppRootStateType, string | null>(state => state.app.error);
-    const error = useAppSelector<AppRootStateType, string | null>((state: AppRootStateType) => state.app.error)
+    const dispatch = useAppDispatch()
+    const error = useAppSelector<string | null>((state: AppRootStateType) => state.app.error)
 
     const isOpen = error !== null;
 
-    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    const handleClose = (event: Event | SyntheticEvent<Element, Event>, reason?: SnackbarCloseReason) => {
         if (reason === 'clickaway') {
-            return;
+            return
         }
-        appActions.setError({ error: null })
+        dispatch(appCommonActions.setError({ error: null }))
     };
 
     return (

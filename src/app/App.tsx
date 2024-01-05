@@ -10,6 +10,7 @@ import { AppRootStateType } from './store';
 import { useActions } from '../common/hooks/useActions';
 import { useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
+import { ErrorSnackBar } from '@/components/ErrorSnackBar.tsx/ErrorSnackBar';
 
 
 function App() {
@@ -34,7 +35,10 @@ function App() {
   }
 
   return (
-    <Router />
+    <>
+      <Router />
+      <ErrorSnackBar />
+    </>
   )
 }
 

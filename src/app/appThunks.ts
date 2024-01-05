@@ -7,18 +7,13 @@ export const initializeApp = createAsyncThunk("app/initializeApp", async (param,
     
          try{
                 const res = await authAPI.me()
-                console.log('try')
                 if (res.data.is_active) {
         dispatch(setIsLoggedIn({value: true}))
 }
-                // dispatch(setIsLoggedIn({value: true}))
 
         } catch(error: any) {
-                console.log('catch')
-                // console.log(error)
 
-        } 
-        finally {
+        } finally {
                 dispatch(appActions.setAppInitialized({isInitialized: true}))
         }
          

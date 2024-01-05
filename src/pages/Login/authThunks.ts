@@ -1,10 +1,9 @@
 
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { RequestStatusType } from "../../common/enums/enums"
 import { authAPI } from "./authAPI"
-import { setIsLoggedIn } from "./authReducer"
 import { LoginParamsType } from "../../common/types/types"
 import { appCommonActions } from '@/common/commonActions/AppCommonActions';
+import { handleAsyncServerNetworkError } from "@/utils/error-utils"
 
 export const login = createAsyncThunk("auth/login", async (param: LoginParamsType, thunkAPI) => {
     
@@ -12,18 +11,15 @@ export const login = createAsyncThunk("auth/login", async (param: LoginParamsTyp
     try {
 
         const res = await authAPI.login(param)
-        
-        if(res.status === 204) {
-            // thunkAPI.dispatch(setIsLoggedIn({value: true}))
+        // if(res.status === 204) {
             thunkAPI.dispatch(appCommonActions.setStatus({status:"succeeded"}))
             return 
-        }    
-    } catch (error) {
-    return thunkAPI.rejectWithValue(error)
-        
-        // console.log(error);
-        // handleServerNetworkError(error, dispatch)
-        // return {isLoggedIn: false}
+        // }  
+    } catch (error: any) {
+
+        console.log(error)
+
+    return handleAsyncServerNetworkError(error, thunkAPI)
     }
 })
 
