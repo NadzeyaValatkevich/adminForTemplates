@@ -9,6 +9,6 @@ export const authAPI = {
         return(instance.post(`auth/logout`))
     },
     me() {
-        return (instance.get<HomeResponseType>('auth/me'))
+        return (instance.get<HomeResponseType>('users/me'))
     }
 }

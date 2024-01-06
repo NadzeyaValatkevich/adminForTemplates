@@ -13,7 +13,7 @@ import { useAppDispatch } from '@/common/hooks/useAppDispatch';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 
 type FormValuesType = {
-    username: string
+    email: string
     password: string
 };
 
@@ -80,10 +80,10 @@ export const Login = () => {
                         <FormGroup sx={{ padding: '0 1rem 0 1rem', width: "100%", boxSizing: "border-box" }}>
 
                             <TextFieldElement
-                                type={'username'}
+                                type={'email'}
                                 margin={'dense'}
                                 label={'Login'}
-                                name={'username'}
+                                name={'email'}
                                 variant={'standard'}
                                 // onChange={(e: ChangeHandler<HTMLInputElement | HTMLTextAreaElement>) => setValueUserName(e)}
                                 // autoComplete={'username'}
