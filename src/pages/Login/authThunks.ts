@@ -4,6 +4,7 @@ import { authAPI } from "./authAPI"
 import { LoginParamsType } from "../../common/types/types"
 import { appCommonActions } from '@/common/commonActions/AppCommonActions';
 import { handleAsyncServerNetworkError } from "@/utils/error-utils"
+import { initializeApp } from "@/app/appThunks";
 
 export const login = createAsyncThunk("auth/login", async (param: LoginParamsType, thunkAPI) => {
     
@@ -12,14 +13,12 @@ export const login = createAsyncThunk("auth/login", async (param: LoginParamsTyp
 
         const res = await authAPI.login(param)
         // if(res.status === 204) {
+            thunkAPI.dispatch(initializeApp())
             thunkAPI.dispatch(appCommonActions.setStatus({status:"succeeded"}))
             return 
         // }  
     } catch (error: any) {
-
-        console.log(error)
-
-    return handleAsyncServerNetworkError(error, thunkAPI)
+        return handleAsyncServerNetworkError(error, thunkAPI)
     }
 })
 

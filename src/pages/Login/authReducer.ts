@@ -4,12 +4,12 @@ import { login, logout } from "./authThunks"
 export const slice = createSlice({
     name: 'auth',
     initialState: {
-    isLoggedIn: false
+    isLoggedIn: false,
 },
     reducers: {
 setIsLoggedIn(state, action: PayloadAction<{value: boolean}>) {
     state.isLoggedIn = action.payload.value
-}
+},
     },
     extraReducers: builder => {
         builder.addCase(login.fulfilled, (state) => {
