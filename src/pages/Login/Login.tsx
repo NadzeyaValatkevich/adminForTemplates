@@ -4,13 +4,13 @@ import { Paper } from '@mui/material'
 import { Typography } from '@mui/material'
 import styles from "./Login.module.css"
 import Box from '@mui/material/Box';
-import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement, useForm } from 'react-hook-form-mui';
+import { FormContainer, PasswordElement, SubmitHandler, TextFieldElement } from 'react-hook-form-mui';
 import { authThunks } from '.';
 import { useAppSelector } from '@/common/hooks/useAppSelector';
 import { AppRootStateType } from '@/app/store';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/common/hooks/useAppDispatch';
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 type FormValuesType = {
     email: string
@@ -31,13 +31,6 @@ export const Login = () => {
     const onSuccessHandler: SubmitHandler<FormValuesType> = async (data: FormValuesType) => {
         await dispatch(authThunks.login(data))
     }
-
-    // const { watch } = useForm<FormValuesType>()
-    // const formValues = watch();
-
-    // const [valueUserName, setValueUserName] = useState("")
-    // console.log(valueUserName)
-
 
     return (
         <div className={styles.loginBlock}>
@@ -85,17 +78,16 @@ export const Login = () => {
                                 label={'Login'}
                                 name={'email'}
                                 variant={'standard'}
-                                // onChange={(e: ChangeHandler<HTMLInputElement | HTMLTextAreaElement>) => setValueUserName(e)}
-                                // autoComplete={'username'}
                                 fullWidth
+                                required
                             />
                             <PasswordElement
-                                type={'text'}
+                                required
+                                type={'password'}
                                 margin={'dense'}
                                 label={'Password'}
                                 name={'password'}
                                 variant={'standard'}
-                                // autoComplete={'current-password'}
                                 fullWidth
                             />
                             <Button type={'submit'}

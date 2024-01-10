@@ -20,9 +20,10 @@ export const handleAsyncServerNetworkError = (error: any, thunkAPI: ThunkAPIType
             thunkAPI.dispatch(appCommonActions.setError({ error: error.message }))
         } else if (error.response.status === 400) {
             thunkAPI.dispatch(appCommonActions.setError({ error: error.response.data.detail }))
-        } else if (error.response.status === 422) {
-            thunkAPI.dispatch(appCommonActions.setError({ error: error.response.data.detail[0].msg }))
         }
+        // else if (error.response.status === 422) {
+        //     thunkAPI.dispatch(appCommonActions.setError({ error: error.response.data.detail[0].msg }))
+        // }
 
     }
     thunkAPI.dispatch(appCommonActions.setStatus({ status: 'failed' }));
