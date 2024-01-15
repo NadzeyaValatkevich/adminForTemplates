@@ -1,7 +1,10 @@
 import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 import { Login } from '@/pages/Login';
-import { HomePage } from '@/pages/Home';
+import { AdminPage } from '@/pages/AdminPage';
 import { PrivateRoutes } from '@/utils/PrivateRoutes';
+import { NewPassword } from '@/pages/Info/NewPassword';
+import { MainPage } from '@/pages/PagesSite/MainPage';
+import { KitchenPage } from '@/pages/PagesSite/KitchenPage';
 
 
 const publicRoutes: RouteObject[] = [
@@ -14,8 +17,44 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
     {
         path: '/',
-        element: <HomePage />,
+        element: <AdminPage />,
+        children: [
+            {
+                path: 'info/',
+                children: [
+                    {
+                        path: 'set-new-password',
+                        element: <NewPassword />,
+                    }
+                ]
+            },
+            {
+                path: 'page/',
+                children: [
+                    {
+                        path: 'mainPage',
+                        element: <MainPage />,
+                    },
+                    {
+                        path: 'kitchenPage',
+                        element: <KitchenPage />,
+                    }
+                ]
+            }
+        ]
     },
+    // {
+    //     path: '/pages/mainPage',
+    //     element: <MainPage />,
+    // },
+    // {
+    //     path: '/pages/kitchenPage',
+    //     element: <KitchenPage />,
+    // },
+    // {
+    //     path: '/info/set-new-password',
+    //     element: <NewPassword />,
+    // },
 ]
 
 

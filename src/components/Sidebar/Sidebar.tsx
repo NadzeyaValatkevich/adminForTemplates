@@ -16,6 +16,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { ListItemComponent } from '../ListItemComponent/ListItemComponent';
+import { KITCHEN_PAGE, MAIN_PAGE, NEW_PASSWORD } from '@/common/routesPages/routes';
 // const pages = ['Главная', 'О нас', 'Кухня', 'Развлечения', 'Галерея', 'Контакты', 'Правила'];
 
 
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
+            width: '500px'
         },
         drawer: {
             [theme.breakpoints.up('sm')]: {
@@ -80,27 +82,31 @@ export const Sidebar = (props: Props) => {
     const menuItems: any = [
         {
             id: 1, title: "Главная", items: [
-                { id: 1, title: "Логотип" },
-                { id: 2, title: "Фоновые фотографии" },
-                { id: 3, title: "Заявки" },
-                { id: 4, title: "Политика и соглашение" },
+                // { id: 1, title: "Логотип", path: LOGO },
+                // { id: 2, title: "Фоновые фотографии", path: LOGO },
+                // { id: 3, title: "Заявки", path: LOGO },
+                // { id: 4, title: "Политика и соглашение", path: LOGO },
             ]
         },
 
-        { id: 2, title: "Общая информация" },
+        {
+            id: 2, title: "Общая информация", items: [
+                { id: 1, title: "Смена пароля", path: NEW_PASSWORD }
+            ]
+        },
 
         {
             id: 3, title: "Страницы сайта", items: [
-                { id: 1, title: "Главная" },
-                { id: 2, title: "Об усадьбе" },
-                { id: 3, title: "Наши фомики" },
-                { id: 4, title: "Кухня" },
-                { id: 5, title: "Развлечения" },
-                { id: 6, title: "Места рядом" },
-                { id: 7, title: "Свадьбы" },
-                { id: 8, title: "Галерея" },
-                { id: 9, title: "Првила" },
-                { id: 10, title: "Контакты" },
+                { id: 1, title: "Главная", path: MAIN_PAGE },
+                // { id: 2, title: "Об усадьбе", path: LOGO },
+                // { id: 3, title: "Наши фомики", path: LOGO },
+                { id: 4, title: "Кухня", path: KITCHEN_PAGE },
+                // { id: 5, title: "Развлечения", path: LOGO },
+                // { id: 6, title: "Места рядом", path: LOGO },
+                // { id: 7, title: "Свадьбы", path: LOGO },
+                // { id: 8, title: "Галерея", path: LOGO },
+                // { id: 9, title: "Правила", path: LOGO },
+                // { id: 10, title: "Контакты", path: LOGO },
             ]
         },
     ]
@@ -182,9 +188,9 @@ export const Sidebar = (props: Props) => {
                     {/* <div className={classes.toolbar} /> */}
                     <Divider />
                     <List>
-                        {menuItems.map((el: any) => (
+                        {menuItems.map((el: any, index: number) => (
 
-                            <ListItemComponent el={el} />
+                            <ListItemComponent el={el} key={index} />
                         ))}
                     </List>
                 </Drawer>

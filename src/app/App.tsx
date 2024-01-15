@@ -2,7 +2,7 @@ import './App.css';
 import { Container } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { Login } from "../pages/Login";
-import { Home } from "../pages/Home/HomePage";
+import { Home } from "../pages/AdminPage/AdminPage";
 import { appThunks } from "./index";
 import { Router } from './router';
 import { useAppSelector } from '../common/hooks/useAppSelector';
