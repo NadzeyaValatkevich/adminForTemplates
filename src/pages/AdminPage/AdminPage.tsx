@@ -13,19 +13,18 @@ export const AdminPage = () => {
     // const isLoggedIn = useAppSelector((state: AppRootStateType): boolean => state.auth.isLoggedIn)
     const is_superuser = useAppSelector((state: AppRootStateType): boolean => state.app.is_superuser);
 
-    // useEffect(() => {
-    //     !isLoggedIn && navigate('/login')
-    // }, [isLoggedIn, navigate])
-
 
     return (
-        <div>
+        <>
             <Header />
-            <Sidebar />
-            <Outlet />
+            <div style={{ display: 'flex' }}>
+                <Sidebar />
+                <Outlet />
+            </div>
+
             {/* <RoutesComponent /> */}
             {/* <h1 style={{ textAlign: "center" }}>{is_superuser ? "Hello superUser" : "Hello user"}</h1> */}
-        </div>
+        </>
     )
 
 }

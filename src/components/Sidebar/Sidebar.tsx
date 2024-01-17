@@ -17,67 +17,31 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { ListItemComponent } from '../ListItemComponent/ListItemComponent';
 import { KITCHEN_PAGE, MAIN_PAGE, NEW_PASSWORD } from '@/common/routesPages/routes';
+import { relative } from 'path';
 // const pages = ['Главная', 'О нас', 'Кухня', 'Развлечения', 'Галерея', 'Контакты', 'Правила'];
 
 
-const drawerWidth = 240;
+// const drawerWidth = 300;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            display: 'flex',
-            width: '500px'
-        },
-        drawer: {
-            [theme.breakpoints.up('sm')]: {
-                width: drawerWidth,
-                flexShrink: 0,
-            },
-        },
-        appBar: {
-            [theme.breakpoints.up('sm')]: {
-                width: `calc(100% - ${drawerWidth}px)`,
-                marginLeft: drawerWidth,
-            },
-        },
-        menuButton: {
-            marginRight: theme.spacing(2),
-            [theme.breakpoints.up('sm')]: {
-                display: 'none',
-            },
-        },
-        // necessary for content to be below app bar
-        toolbar: theme.mixins.toolbar,
         drawerPaper: {
-            width: drawerWidth,
-            marginTop: 64
-        },
-        content: {
-            flexGrow: 1,
-            padding: theme.spacing(3),
+            width: '300px',
+            position: 'relative'
         },
     }),
 );
 
-interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window?: () => Window;
-}
 
+export const Sidebar = () => {
 
-export const Sidebar = (props: Props) => {
-
-    const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    // const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
+    // const handleDrawerToggle = () => {
+    //     setMobileOpen(!mobileOpen);
+    // };
 
     const menuItems: any = [
         {
@@ -90,7 +54,7 @@ export const Sidebar = (props: Props) => {
         },
 
         {
-            id: 2, title: "Общая информация", items: [
+            id: 2, title: "Администраторы", items: [
                 { id: 1, title: "Смена пароля", path: NEW_PASSWORD }
             ]
         },
@@ -111,91 +75,25 @@ export const Sidebar = (props: Props) => {
         },
     ]
 
-    // const drawer = (
-    //     <div>
-    //         <div className={classes.toolbar} />
-    //         <Divider />
-    //         <List>
-    //             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
-    //                 <ListItem button key={text}>
-    //                     {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-    //                     <ListItemText primary={text} />
-    //                 </ListItem>
-    //             ))}
-    //         </List>
-    {/* <Divider /> */ }
-    {/* <List>
-                {['All mail', 'Trash', 'Spam'].map((text) => (
-                    <ListItem button key={text}> */}
-    {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */ }
-    {/* <ListItemText primary={text} />
-        </ListItem>
-    ))
-}
-            </List >  */}
-    {/* </div >
-    ); */}
-
-    // const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <div className={classes.root}>
-            {/* <CssBaseline /> */}
-            {/* <AppBar position="fixed" className={classes.appBar}> */}
-            {/* <Toolbar> */}
-            {/* <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        className={classes.menuButton}
-                    > */}
-            {/* <MenuIcon /> */}
-            {/* </IconButton> */}
-            {/* <Typography variant="h6" noWrap>
-                        Responsive drawer
-                    </Typography> */}
-            {/* </Toolbar > */}
-            {/* </AppBar > */}
-            <nav className={classes.drawer} aria-label="mailbox folders">
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                {/* <Hidden smUp implementation="css"> */}
-                {/* <Drawer
-                    container={container}
-                    variant="temporary"
-                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                >
-                    {drawer}
-                </Drawer> */}
-                {/* </Hidden> */}
-                {/* <Hidden xsDown implementation="css"> */}
-                <Drawer
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
-                    variant="permanent"
-                    open
-                >
-                    {/* {drawer} */}
-                    {/* <div className={classes.toolbar} /> */}
-                    <Divider />
-                    <List>
-                        {menuItems.map((el: any, index: number) => (
+        <Drawer
+            classes={{
+                paper: classes.drawerPaper,
+            }}
+            variant="permanent"
+            open
+        >
+            {/* {drawer} */}
+            {/* <div className={classes.toolbar} /> */}
+            <Divider />
+            <List>
+                {menuItems.map((el: any, index: number) => (
 
-                            <ListItemComponent el={el} key={index} />
-                        ))}
-                    </List>
-                </Drawer>
-                {/* </Hidden> */}
-            </nav >
-        </div >
+                    <ListItemComponent el={el} key={index} />
+                ))}
+            </List>
+        </Drawer>
+
     );
 }
