@@ -3,7 +3,12 @@ export type LoginParamsType = {
     password: string
 };
 
-export type HomeResponseType = {
+export type LoginResponseType = {
+  email: string,
+  password: string
+}
+
+export type AuthResponseType = {
     id: number,
   email: string,
   is_active: boolean,

@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const settings = {
+export const settings = {
     withCredentials: true,
     headers: {
         "Accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
     }
 }
 

@@ -23,7 +23,7 @@ const privateRoutes: RouteObject[] = [
                 path: 'info/',
                 children: [
                     {
-                        path: 'set-new-password',
+                        path: 'change_password',
                         element: <NewPassword />,
                     }
                 ]

@@ -5,6 +5,7 @@ import { LoginParamsType } from "../../common/types/types"
 import { appCommonActions } from '@/common/commonActions/AppCommonActions';
 import { handleAsyncServerNetworkError } from "@/utils/error-utils"
 import { initializeApp } from "@/app/appThunks";
+import { FormPasswordValuesType } from "../Info/NewPassword/NewPassword";
 
 export const login = createAsyncThunk("auth/login", async (param: LoginParamsType, thunkAPI) => {
     
@@ -20,24 +21,31 @@ export const login = createAsyncThunk("auth/login", async (param: LoginParamsTyp
     } catch (error: any) {
         return handleAsyncServerNetworkError(error, thunkAPI)
     }
-})
+});
 
 export const logout = createAsyncThunk("auth/logout", async (param, thunkAPI) => {
     thunkAPI.dispatch(appCommonActions.setStatus({status:"loading"}))
     try {
         const res = await authAPI.logout()
-        // if(res.data.resultCode === 0) {
-            // thunkAPI.dispatch(setIsLoggedIn({value: true}))
             thunkAPI.dispatch(appCommonActions.setStatus({status:"succeeded"}))
-            return
-        // } else {
-            // handleServerAppError(res.data, thunkAPI.dispatch)
-            // return {isLoggedIn: false}
-        // }     
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error)
-        // handleServerNetworkError(error, dispatch)
-        // return {isLoggedIn: false}
+            return   
+    } catch (error: any) {
+        handleAsyncServerNetworkError(error, thunkAPI)
+        // return thunkAPI.rejectWithValue(error)
+        
+    }
+});
+
+export const createNewPassword = createAsyncThunk("users/change_password", async (param: FormPasswordValuesType, thunkAPI) => {
+    thunkAPI.dispatch(appCommonActions.setStatus({status:"loading"}))
+    try {
+        const res = await authAPI.createNewPassword(param)
+        thunkAPI.dispatch(appCommonActions.setStatus({status:"succeeded"}))
+        return
+    } catch (error: any) {
+        handleAsyncServerNetworkError(error, thunkAPI)
     }
 })
+
+
 
