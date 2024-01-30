@@ -6,16 +6,17 @@ import { appCommonActions } from '@/common/commonActions/AppCommonActions';
 import { handleAsyncServerNetworkError } from "@/utils/error-utils"
 import { initializeApp } from "@/app/appThunks";
 import { FormPasswordValuesType } from "../Info/NewPassword/NewPassword";
+import { RequestStatusType } from "@/common/enums/enums";
 
 export const login = createAsyncThunk("auth/login", async (param: LoginParamsType, thunkAPI) => {
     
-    thunkAPI.dispatch(appCommonActions.setStatus({status:"loading"}))
+    thunkAPI.dispatch(appCommonActions.setStatus({status: RequestStatusType.loading}))
     try {
 
         const res = await authAPI.login(param)
         // if(res.status === 204) {
             thunkAPI.dispatch(initializeApp())
-            thunkAPI.dispatch(appCommonActions.setStatus({status:"succeeded"}))
+            thunkAPI.dispatch(appCommonActions.setStatus({status: RequestStatusType.succeeded}))
             return 
         // }  
     } catch (error: any) {
@@ -24,10 +25,10 @@ export const login = createAsyncThunk("auth/login", async (param: LoginParamsTyp
 });
 
 export const logout = createAsyncThunk("auth/logout", async (param, thunkAPI) => {
-    thunkAPI.dispatch(appCommonActions.setStatus({status:"loading"}))
+    thunkAPI.dispatch(appCommonActions.setStatus({status: RequestStatusType.loading}))
     try {
         const res = await authAPI.logout()
-            thunkAPI.dispatch(appCommonActions.setStatus({status:"succeeded"}))
+            thunkAPI.dispatch(appCommonActions.setStatus({status: RequestStatusType.succeeded}))
             return   
     } catch (error: any) {
         handleAsyncServerNetworkError(error, thunkAPI)
@@ -37,10 +38,10 @@ export const logout = createAsyncThunk("auth/logout", async (param, thunkAPI) =>
 });
 
 export const createNewPassword = createAsyncThunk("users/change_password", async (param: FormPasswordValuesType, thunkAPI) => {
-    thunkAPI.dispatch(appCommonActions.setStatus({status:"loading"}))
+    thunkAPI.dispatch(appCommonActions.setStatus({status: RequestStatusType.loading}))
     try {
         const res = await authAPI.createNewPassword(param)
-        thunkAPI.dispatch(appCommonActions.setStatus({status:"succeeded"}))
+        thunkAPI.dispatch(appCommonActions.setStatus({status: RequestStatusType.succeeded}))
         return
     } catch (error: any) {
         handleAsyncServerNetworkError(error, thunkAPI)

@@ -15,7 +15,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import { ListItemComponent } from '../ListItemComponent/ListItemComponent';
+import { ListItemComponent } from '../../../components/ListItemComponent/ListItemComponent';
 import { KITCHEN_PAGE, MAIN_PAGE, NEW_PASSWORD } from '@/common/routesPages/routes';
 import { relative } from 'path';
 // const pages = ['Главная', 'О нас', 'Кухня', 'Развлечения', 'Галерея', 'Контакты', 'Правила'];

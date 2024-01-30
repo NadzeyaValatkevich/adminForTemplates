@@ -1,4 +1,5 @@
 import { appCommonActions } from '@/common/commonActions/AppCommonActions'
+import { RequestStatusType } from '@/common/enums/enums';
 
 type ThunkAPIType = {
     dispatch: (action: any) => any
@@ -9,7 +10,7 @@ export const handleAsyncServerAppError = (data: any, thunkAPI: ThunkAPIType, sho
     if (showError) {
         thunkAPI.dispatch(appCommonActions.setError({ error: data.messages.length ? data.messages[0] : 'Some error occurred' }))
     }
-    thunkAPI.dispatch(appCommonActions.setStatus({ status: 'failed' }));
+    thunkAPI.dispatch(appCommonActions.setStatus({ status: RequestStatusType.failed }));
     return thunkAPI.rejectWithValue({ errors: data.messages })
 };
 
@@ -26,7 +27,7 @@ export const handleAsyncServerNetworkError = (error: any, thunkAPI: ThunkAPIType
         }
 
     }
-    thunkAPI.dispatch(appCommonActions.setStatus({ status: 'failed' }));
+    thunkAPI.dispatch(appCommonActions.setStatus({ status: RequestStatusType.failed }));
     return thunkAPI.rejectWithValue({ errors: [error.message] })
 };
 

@@ -1,30 +1,25 @@
 import './App.css';
-import { Container } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
-import { Login } from "../pages/Login";
-import { Home } from "../pages/AdminPage/AdminPage";
-import { appThunks } from "./index";
 import { Router } from './router';
 import { useAppSelector } from '../common/hooks/useAppSelector';
 import { AppRootStateType } from './store';
-import { useActions } from '../common/hooks/useActions';
 import { useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 import { ErrorSnackBar } from '@/components/ErrorSnackBar/ErrorSnackBar';
+import { initializeApp } from './appThunks';
+import { useAppDispatch } from '@/common/hooks/useAppDispatch';
 
 
 function App() {
+  const dispatch = useAppDispatch();
   const isInitialized = useAppSelector((state: AppRootStateType): boolean => state.app.isInitialized);
 
-  const { initializeApp } = useActions(appThunks);
+  // const { initializeApp } = useActions(appThunks);
 
   // if (!isInitialized) {
   //   <Loader />
   // }
 
-
-
-  useEffect(() => { initializeApp() }, []);
+  useEffect(() => { dispatch(initializeApp()) }, []);
 
   if (!isInitialized) {
     return <div

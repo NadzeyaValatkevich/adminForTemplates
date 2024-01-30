@@ -1,6 +1,7 @@
 import {createAction} from "@reduxjs/toolkit";
+import { RequestStatusType } from "../enums/enums";
 
-const setStatus = createAction<{status: 'idle' | 'loading' | 'succeeded' | 'failed'}>('app/setStatus');
+const setStatus = createAction<{status: RequestStatusType}>('app/setStatus');
 const setError = createAction<{error: string | null}>('app/setError');
 
 export const appCommonActions = {

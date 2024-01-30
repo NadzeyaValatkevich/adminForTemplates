@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit"
 import { PayloadAction } from '@reduxjs/toolkit';
 import { initializeApp } from "./appThunks";
 import { appCommonActions } from "@/common/commonActions/AppCommonActions";
+import { RequestStatusType } from "@/common/enums/enums";
 
  export const slice = createSlice({
     name: 'app',
     initialState: {
     error: null as string | null,
-    status: 'idle',
+    // status: 'idle',
+    status: RequestStatusType.idle as RequestStatusType,
     isInitialized: false,
     is_superuser: false
 },

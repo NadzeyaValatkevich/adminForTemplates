@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 import { Login } from '@/pages/Login';
-import { AdminPage } from '@/pages/AdminPage';
+import { PagesContainer } from '@/pages/PagesContainer';
 import { PrivateRoutes } from '@/utils/PrivateRoutes';
 import { NewPassword } from '@/pages/Info/NewPassword';
 import { MainPage } from '@/pages/PagesSite/MainPage';
@@ -17,7 +17,7 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
     {
         path: '/',
-        element: <AdminPage />,
+        element: <PagesContainer />,
         children: [
             {
                 path: 'info/',
