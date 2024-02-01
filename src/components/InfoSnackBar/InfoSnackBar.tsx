@@ -11,26 +11,27 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
     ref,
 ) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    return <MuiAlert elevation={6} ref={ref} {...props} />;
 });
 
-export const ErrorSnackBar = () => {
+export const InfoSnackBar = () => {
     const dispatch = useAppDispatch()
     const error = useAppSelector<string | null>((state: AppRootStateType) => state.app.error)
+    const info = useAppSelector<string | null>((state: AppRootStateType) => state.app.info)
 
-    const isOpen = error !== null;
+    const isOpen = (error !== null) || (info !== null);
 
     const handleClose = (event: Event | SyntheticEvent<Element, Event>, reason?: SnackbarCloseReason) => {
         if (reason === 'clickaway') {
             return
         }
-        dispatch(appCommonActions.setError({ error: null }))
+        error ? dispatch(appCommonActions.setError({ error: null })) : dispatch(appCommonActions.setInfo({ info: null }))
     };
 
     return (
         <Snackbar open={isOpen} autoHideDuration={5000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                {error}
+            <Alert onClose={handleClose} severity={error ? "error" : "success"} sx={{ width: '100%' }}>
+                {error || info}
             </Alert>
         </Snackbar>
     );

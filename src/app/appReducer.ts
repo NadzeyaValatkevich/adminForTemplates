@@ -8,6 +8,7 @@ import { RequestStatusType } from "@/common/enums/enums";
     name: 'app',
     initialState: {
     error: null as string | null,
+    info: null as string | null,
     // status: 'idle',
     status: RequestStatusType.idle as RequestStatusType,
     isInitialized: false,
@@ -32,6 +33,9 @@ import { RequestStatusType } from "@/common/enums/enums";
         }),
         builder.addCase(appCommonActions.setError, (state, action) => {
             state.error = action.payload.error
+        })
+        builder.addCase(appCommonActions.setInfo, (state, action) => {
+            state.info = action.payload.info
         })
     }
 })

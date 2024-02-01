@@ -3,8 +3,10 @@ import { RequestStatusType } from "../enums/enums";
 
 const setStatus = createAction<{status: RequestStatusType}>('app/setStatus');
 const setError = createAction<{error: string | null}>('app/setError');
+const setInfo = createAction<{info: string | null}>('app/setInfo');
 
 export const appCommonActions = {
     setStatus,
-    setError
+    setError,
+    setInfo
 };

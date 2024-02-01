@@ -4,9 +4,9 @@ import { useAppSelector } from '../common/hooks/useAppSelector';
 import { AppRootStateType } from './store';
 import { useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
-import { ErrorSnackBar } from '@/components/ErrorSnackBar/ErrorSnackBar';
 import { initializeApp } from './appThunks';
 import { useAppDispatch } from '@/common/hooks/useAppDispatch';
+import { InfoSnackBar } from '@/components/InfoSnackBar/InfoSnackBar';
 
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
   return (
     <>
       <Router />
-      <ErrorSnackBar />
+      <InfoSnackBar />
     </>
   )
 }

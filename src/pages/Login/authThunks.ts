@@ -39,9 +39,16 @@ export const logout = createAsyncThunk("auth/logout", async (param, thunkAPI) =>
 
 export const createNewPassword = createAsyncThunk("users/change_password", async (param: FormPasswordValuesType, thunkAPI) => {
     thunkAPI.dispatch(appCommonActions.setStatus({status: RequestStatusType.loading}))
+    
     try {
         const res = await authAPI.createNewPassword(param)
+
+        if(res.status === 200) {
+            thunkAPI.dispatch(appCommonActions.setInfo({info: res.data.status}))
+        }
+
         thunkAPI.dispatch(appCommonActions.setStatus({status: RequestStatusType.succeeded}))
+
         return
     } catch (error: any) {
         handleAsyncServerNetworkError(error, thunkAPI)

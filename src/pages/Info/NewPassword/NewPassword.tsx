@@ -16,14 +16,6 @@ export type FormPasswordValuesType = {
 export const NewPassword = () => {
     const dispatch = useAppDispatch();
 
-    // const errors: any = {}
-    // if (!values.email) {
-    //     errors.email = 'Required'
-    // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    //     errors.email = 'Invalid email address'
-    // }
-    // return errors
-
     const passwordValidation = {
         validate: (value: string) => {
             if (! /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g.test(value)) {
@@ -36,7 +28,7 @@ export const NewPassword = () => {
     const onSuccessHandler: SubmitHandler<FormPasswordValuesType> = async (data: FormPasswordValuesType) => {
         console.log(data)
         await dispatch(createNewPassword(data))
-    }
+    };
 
     return (
         // <div className={styles.blockNewPassword}>
