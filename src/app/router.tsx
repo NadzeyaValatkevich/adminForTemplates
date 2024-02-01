@@ -5,6 +5,7 @@ import { PrivateRoutes } from '@/utils/PrivateRoutes';
 import { NewPassword } from '@/pages/Info/NewPassword';
 import { MainPage } from '@/pages/PagesSite/MainPage';
 import { KitchenPage } from '@/pages/PagesSite/KitchenPage';
+import { ForgotPassword } from '@/pages/Info/ForgotPassword/ForgotPassword';
 
 
 const publicRoutes: RouteObject[] = [
@@ -20,11 +21,15 @@ const privateRoutes: RouteObject[] = [
         element: <PagesContainer />,
         children: [
             {
-                path: 'info/',
+                path: 'administration/',
                 children: [
                     {
                         path: 'change_password',
                         element: <NewPassword />,
+                    },
+                    {
+                        path: 'forgot_password',
+                        element: <ForgotPassword />,
                     }
                 ]
             },
