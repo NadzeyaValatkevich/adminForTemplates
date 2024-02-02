@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { FormContainer, PasswordElement, SubmitHandler, PasswordRepeatElement, useForm, useWatch, Controller } from 'react-hook-form-mui';
+import { FormContainer, PasswordElement, SubmitHandler, PasswordRepeatElement } from 'react-hook-form-mui';
 import FormGroup from '@mui/material/FormGroup';
 import { useAppDispatch } from "@/common/hooks/useAppDispatch";
 import { createNewPassword } from "@/pages/Login/authThunks";

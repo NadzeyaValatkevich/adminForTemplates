@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { ListItemComponent } from '../../../components/ListItemComponent/ListItemComponent';
-import { KITCHEN_PAGE, MAIN_PAGE, NEW_PASSWORD, FORGOT_PASSWORD } from '@/common/routesPages/routes';
+import { KITCHEN_PAGE, MAIN_PAGE, NEW_PASSWORD, FORGOT_PASSWORD, MAIN_MENU_MANAGEMENT } from '@/common/routesPages/routes';
 import HomeIcon from '@mui/icons-material/Home';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import MenuIcon from '@mui/icons-material/Menu';
+import { NavLink } from 'react-router-dom';
 // const pages = ['Главная', 'О нас', 'Кухня', 'Развлечения', 'Галерея', 'Контакты', 'Правила'];
 
 
@@ -21,6 +23,20 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+export type ItemType = {
+    id: number,
+    title: string,
+    path: string
+};
+
+export type MenuItemType = {
+    id: number,
+    title: string,
+    icon?: ReactNode,
+    path?: string,
+    items?: ItemType[]
+};
+
 
 export const Sidebar = () => {
 
@@ -32,7 +48,7 @@ export const Sidebar = () => {
     //     setMobileOpen(!mobileOpen);
     // };
 
-    const menuItems: any = [
+    const menuItems: MenuItemType[] = [
         {
             id: 1, title: "Главная", icon: <HomeIcon />, items: [
                 // { id: 1, title: "Логотип", path: LOGO },
@@ -50,7 +66,11 @@ export const Sidebar = () => {
         },
 
         {
-            id: 3, title: "Страницы сайта", items: [
+            id: 3, title: "Управление главным меню", icon: <MenuIcon />, path: MAIN_MENU_MANAGEMENT
+        },
+
+        {
+            id: 4, title: "Страницы сайта", items: [
                 { id: 1, title: "Главная", path: MAIN_PAGE },
                 // { id: 2, title: "Об усадьбе", path: LOGO },
                 // { id: 3, title: "Наши фомики", path: LOGO },
@@ -78,10 +98,18 @@ export const Sidebar = () => {
             {/* <div className={classes.toolbar} /> */}
             <Divider />
             <List>
-                {menuItems.map((el: any, index: number) => (
+                {menuItems.map((el: MenuItemType, index: number) => {
+                    return (
 
-                    <ListItemComponent el={el} key={index} />
-                ))}
+                        el.path ?
+                            <NavLink to={el.path}
+                                style={{ textDecoration: 'none', color: 'black' }}
+                                key={index}>
+                                <ListItemComponent el={el} key={index} />
+                            </NavLink> :
+                            <ListItemComponent el={el} key={index} />
+                    )
+                })}
             </List>
         </Drawer>
 

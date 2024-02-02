@@ -6,6 +6,7 @@ import { NewPassword } from '@/pages/Info/NewPassword';
 import { MainPage } from '@/pages/PagesSite/MainPage';
 import { KitchenPage } from '@/pages/PagesSite/KitchenPage';
 import { ForgotPassword } from '@/pages/Info/ForgotPassword/ForgotPassword';
+import { MainMenuManagement } from '@/pages/MainMenuManagement';
 
 
 const publicRoutes: RouteObject[] = [
@@ -33,6 +34,12 @@ const privateRoutes: RouteObject[] = [
                     }
                 ]
             },
+
+            {
+                path: 'main_menu_management',
+                element: <MainMenuManagement />,
+            },
+
             {
                 path: 'page/',
                 children: [
@@ -49,8 +56,8 @@ const privateRoutes: RouteObject[] = [
         ]
     },
     // {
-    //     path: '/pages/mainPage',
-    //     element: <MainPage />,
+    //     path: '/main_menu_management',
+    //     element: <MainMenuManagement />,
     // },
     // {
     //     path: '/pages/kitchenPage',

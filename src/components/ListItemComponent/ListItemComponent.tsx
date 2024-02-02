@@ -5,12 +5,13 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import Divider from '@mui/material/Divider';
 import { NavLink } from 'react-router-dom';
+import { ItemType, MenuItemType } from '@/pages/PagesContainer/Sidebar/Sidebar';
+
 
 type ListItemComponentPropsType = {
-    el: any
+    el: MenuItemType
 }
 
 export const ListItemComponent = ({ el }: ListItemComponentPropsType) => {
@@ -26,13 +27,12 @@ export const ListItemComponent = ({ el }: ListItemComponentPropsType) => {
             <ListItemButton onClick={handleClick} key={el.id}>
                 <ListItemIcon>
                     {el.icon}
-                    {/* <InboxIcon /> */}
                 </ListItemIcon>
                 <ListItemText primary={el.title} />
                 {el.items ? open ? <ExpandLess /> : <ExpandMore /> : null}
             </ListItemButton>
             {el.items && <Collapse in={open} timeout="auto" unmountOnExit>
-                {el.items.map((item: any, index: number) => (
+                {el.items.map((item: ItemType, index: number) => (
                     <NavLink to={item.path}
                         style={{ textDecoration: 'none', color: 'black' }}
                         key={index}>

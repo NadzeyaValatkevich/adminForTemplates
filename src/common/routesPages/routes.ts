@@ -3,4 +3,5 @@ export const LOGO = "/logo";
 export const MAIN_PAGE = "page/mainPage";
 export const KITCHEN_PAGE = "page/kitchenPage";
 export const FORGOT_PASSWORD = "administration/forgot_password";
+export const MAIN_MENU_MANAGEMENT = "main_menu_management";
 
