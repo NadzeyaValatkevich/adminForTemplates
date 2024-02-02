@@ -25,7 +25,8 @@ export const ListItemComponent = ({ el }: ListItemComponentPropsType) => {
         <>
             <ListItemButton onClick={handleClick} key={el.id}>
                 <ListItemIcon>
-                    <InboxIcon />
+                    {el.icon}
+                    {/* <InboxIcon /> */}
                 </ListItemIcon>
                 <ListItemText primary={el.title} />
                 {el.items ? open ? <ExpandLess /> : <ExpandMore /> : null}

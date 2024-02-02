@@ -5,6 +5,8 @@ import List from '@material-ui/core/List';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { ListItemComponent } from '../../../components/ListItemComponent/ListItemComponent';
 import { KITCHEN_PAGE, MAIN_PAGE, NEW_PASSWORD, FORGOT_PASSWORD } from '@/common/routesPages/routes';
+import HomeIcon from '@mui/icons-material/Home';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 // const pages = ['Главная', 'О нас', 'Кухня', 'Развлечения', 'Галерея', 'Контакты', 'Правила'];
 
 
@@ -32,7 +34,7 @@ export const Sidebar = () => {
 
     const menuItems: any = [
         {
-            id: 1, title: "Главная", items: [
+            id: 1, title: "Главная", icon: <HomeIcon />, items: [
                 // { id: 1, title: "Логотип", path: LOGO },
                 // { id: 2, title: "Фоновые фотографии", path: LOGO },
                 // { id: 3, title: "Заявки", path: LOGO },
@@ -41,7 +43,7 @@ export const Sidebar = () => {
         },
 
         {
-            id: 2, title: "Администрирование", items: [
+            id: 2, title: "Администрирование", icon: <SupervisorAccountIcon />, items: [
                 { id: 1, title: "Смена пароля", path: NEW_PASSWORD },
                 { id: 2, title: "Забыли пароль", path: FORGOT_PASSWORD },
             ]
