@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 export const Logo = () => {
     return (
         <Box sx={{ width: "100%", marginBottom: "50px" }}>
-            <Typography variant='h4'>Логотип</Typography>
+            <Typography variant='h5'>Логотип</Typography>
             <Divider sx={{ marginBottom: "30px" }} />
             <Grid container spacing={2} >
                 <Grid item xs={4}>
