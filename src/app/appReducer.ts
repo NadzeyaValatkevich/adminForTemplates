@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { PayloadAction } from '@reduxjs/toolkit';
 import { initializeApp } from "./appThunks";
 import { appCommonActions } from "@/common/commonActions/AppCommonActions";
-import { RequestStatusType } from "@/common/enums/enums";
+import { RequestStatusType } from "@/utils/enums/enums";
 
  export const slice = createSlice({
     name: 'app',

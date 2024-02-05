@@ -1,5 +1,5 @@
+import { AuthResponseType, LoginParamsType, LoginResponseType } from "@/common/types/authTypes";
 import { instance } from "../../common/instance/instance";
-import { AuthResponseType, LoginParamsType, LoginResponseType } from "@/common/types/types";
 import { FormPasswordValuesType } from "../Info/NewPassword/NewPassword";
 import { settings } from './../../common/instance/instance';
 

@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress/CircularProgres
 import { initializeApp } from './appThunks';
 import { useAppDispatch } from '@/common/hooks/useAppDispatch';
 import { InfoSnackBar } from '@/components/InfoSnackBar/InfoSnackBar';
+import { fetchMainMenuItems } from '@/pages/MainMenuManagement/mainMenuThunks';
 
 
 function App() {
@@ -20,6 +21,10 @@ function App() {
   // }
 
   useEffect(() => { dispatch(initializeApp()) }, []);
+
+  useEffect(() => {
+    dispatch(fetchMainMenuItems())
+  }, []);
 
   if (!isInitialized) {
     return <div

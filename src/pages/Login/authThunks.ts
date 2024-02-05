@@ -6,7 +6,7 @@ import { appCommonActions } from '@/common/commonActions/AppCommonActions';
 import { handleAsyncServerNetworkError } from "@/utils/error-utils"
 import { initializeApp } from "@/app/appThunks";
 import { FormPasswordValuesType } from "../Info/NewPassword/NewPassword";
-import { RequestStatusType } from "@/common/enums/enums";
+import { RequestStatusType } from "@/utils/enums/enums";
 
 export const login = createAsyncThunk("auth/login", async (param: LoginParamsType, thunkAPI) => {
     

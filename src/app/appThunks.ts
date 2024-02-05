@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import { authAPI } from "../pages/Login/authAPI"
 import { appActions } from "."
 import { setIsLoggedIn } from "@/pages/Login/authReducer"
-import { RequestStatusType } from "@/common/enums/enums"
+import { RequestStatusType } from "@/utils/enums/enums"
 import { appCommonActions } from "@/common/commonActions/AppCommonActions"
 import { handleAsyncServerNetworkError } from "@/utils/error-utils"
 

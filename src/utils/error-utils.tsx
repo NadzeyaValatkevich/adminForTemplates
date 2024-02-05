@@ -1,5 +1,5 @@
 import { appCommonActions } from '@/common/commonActions/AppCommonActions'
-import { RequestStatusType } from '@/common/enums/enums';
+import { RequestStatusType } from '@/utils/enums/enums';
 
 type ThunkAPIType = {
     dispatch: (action: any) => any

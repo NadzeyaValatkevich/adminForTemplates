@@ -3,11 +3,13 @@ import thunkMiddleware, { ThunkAction} from "redux-thunk";
 import { combineReducers } from "redux";
 import { appReducer } from ".";
 import { authReducer } from "@/pages/Login";
+import { mainMenuReducer } from "@/pages/MainMenuManagement";
 
 
 export const rootReducer = combineReducers({
     app: appReducer,
-    auth: authReducer
+    auth: authReducer,
+    mainMenu:  mainMenuReducer
 })
 
 export const store = configureStore({

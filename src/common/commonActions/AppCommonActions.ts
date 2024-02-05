@@ -1,5 +1,5 @@
 import {createAction} from "@reduxjs/toolkit";
-import { RequestStatusType } from "../enums/enums";
+import { RequestStatusType } from "../../utils/enums/enums";
 
 const setStatus = createAction<{status: RequestStatusType}>('app/setStatus');
 const setError = createAction<{error: string | null}>('app/setError');
